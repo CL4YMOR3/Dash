@@ -1,0 +1,491 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Tesla-inspired light mode */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 11% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 11% 15%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 210 11% 15%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 11% 46%;
+
+    --accent: 210 20% 96%;
+    --accent-foreground: 210 11% 15%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 210 100% 50%;
+
+    /* Tesla Dashboard specific colors - Light mode */
+    --dashboard-bg: 0 0% 98%;
+    --dashboard-fg: 0 0% 0%;
+    --dashboard-accent: 210 100% 50%;
+    --dashboard-accent-fg: 0 0% 100%;
+    --dashboard-panel: 0 0% 100%;
+    --dashboard-panel-border: 210 20% 90%;
+    --dashboard-grid: 210 20% 92%;
+    --dashboard-success: 142 72% 29%;
+    --dashboard-warning: 38 92% 50%;
+    --dashboard-error: 0 72% 51%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Dark mode with blue accents */
+    --background: 222 47% 11%;
+    --foreground: 0 0% 100%;
+    --card: 222 47% 13%;
+    --card-foreground: 0 0% 100%;
+    --popover: 222 47% 13%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 222 100% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 222 47% 15%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 47% 15%;
+    --muted-foreground: 210 40% 70%;
+
+    --accent: 222 100% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 222 47% 15%;
+    --input: 222 47% 15%;
+    --ring: 222 100% 60%;
+
+    /* Dashboard specific colors - Dark mode */
+    --dashboard-bg: 222 47% 11%;
+    --dashboard-fg: 210 40% 98%;
+    --dashboard-accent: 222 100% 60%;
+    --dashboard-accent-fg: 0 0% 100%;
+    --dashboard-panel: 222 47% 13%;
+    --dashboard-panel-border: 222 47% 15%;
+    --dashboard-grid: 222 47% 15%;
+    --dashboard-success: 160 84% 39%;
+    --dashboard-warning: 38 92% 50%;
+    --dashboard-error: 0 72.2% 50.6%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .dashboard-panel {
+    @apply bg-white dark:bg-slate-900/80 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none transition-colors duration-300;
+  }
+
+  /* Other component styles */
+}
+
+/* Page title and subtitle styles - theme-aware */
+.page-title {
+  @apply text-black dark:text-white font-medium text-2xl;
+}
+
+.page-subtitle {
+  @apply text-slate-600 dark:text-slate-400 text-sm;
+}
+
+/* Custom classes for the dashboard */
+.dashboard-panel {
+  @apply bg-white/90 dark:bg-slate-900/80 backdrop-blur-sm border border-slate-200 dark:border-slate-800 rounded-lg shadow-sm dark:shadow-none transition-colors duration-300;
+  position: relative;
+}
+
+.dashboard-button {
+  @apply bg-white/90 dark:bg-slate-900/80 backdrop-blur-sm border border-slate-200 dark:border-slate-800
+      hover:border-blue-500/50 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-all duration-300 rounded-lg shadow-sm dark:shadow-none;
+}
+
+/* Navigation button style */
+.navigation-button {
+  position: relative;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.dashboard-text-primary {
+  @apply text-black dark:text-white;
+}
+
+.dashboard-text-secondary {
+  @apply text-slate-700 dark:text-slate-300;
+}
+
+.dashboard-text-muted {
+  @apply text-slate-600 dark:text-slate-400;
+}
+
+.dashboard-accent {
+  @apply text-blue-600 dark:text-blue-400;
+}
+
+/* Header styles - ensure consistent coloring and positioning */
+.page-header {
+  @apply w-full bg-white/90 dark:bg-slate-900/80 backdrop-blur-sm border-b border-slate-200 dark:border-slate-800 py-3 px-6 flex justify-between items-center sticky top-0 z-50 transition-colors duration-300 shadow-sm dark:shadow-none;
+  z-index: 50 !important;
+}
+
+.page-header-title {
+  @apply text-black dark:text-white font-medium;
+}
+
+.page-header-back {
+  @apply flex items-center text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors;
+}
+
+/* Microphone button positioning */
+.microphone-fixed {
+  @apply fixed bottom-8 right-8 z-50;
+  z-index: 40 !important;
+}
+
+/* Leaflet map custom styles */
+/* Ensure map container has proper z-index */
+.leaflet-container {
+  background-color: transparent !important;
+  height: 100%;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  z-index: 1 !important;
+}
+
+/* Ensure controls are above other elements */
+.leaflet-control-container {
+  z-index: 2 !important;
+}
+
+/* Map controls - theme aware */
+.leaflet-control-zoom a {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  color: #1e293b !important;
+  border-color: #e2e8f0 !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: rgba(241, 245, 249, 0.9) !important;
+}
+
+.dark .leaflet-control-zoom a {
+  background-color: rgba(30, 41, 59, 0.8) !important;
+  color: #e2e8f0 !important;
+  border-color: #475569 !important;
+}
+
+.dark .leaflet-control-zoom a:hover {
+  background-color: rgba(51, 65, 85, 0.9) !important;
+}
+
+.leaflet-control-attribution {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  color: #64748b !important;
+  backdrop-filter: blur(4px);
+}
+
+.dark .leaflet-control-attribution {
+  background-color: rgba(30, 41, 59, 0.7) !important;
+  color: #94a3b8 !important;
+}
+
+.leaflet-control-attribution a {
+  color: #64748b !important;
+}
+
+.dark .leaflet-control-attribution a {
+  color: #94a3b8 !important;
+}
+
+.custom-marker {
+  transition: transform 0.2s ease;
+}
+
+.custom-marker:hover {
+  transform: scale(1.1);
+}
+
+/* Fix for map container in Safari */
+.leaflet-container {
+  z-index: 0;
+}
+
+.leaflet-control-container {
+  z-index: 1;
+}
+
+/* Ensure the voice controller has proper z-index when inside the map */
+.map-voice-controller {
+  z-index: 1000;
+  position: relative;
+}
+
+/* Arrow marker styles */
+.arrow-marker {
+  background: transparent;
+  border: none;
+}
+
+/* Route line animation */
+.route-line {
+  stroke-dasharray: 10;
+  animation: dash 30s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+
+/* Map marker styles */
+.map-marker-start {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.map-marker-end {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.map-marker-waypoint {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Route styles */
+.route-primary {
+  stroke: #3b82f6;
+  stroke-width: 5;
+  stroke-opacity: 0.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.route-alternative {
+  stroke: #8b5cf6;
+  stroke-width: 4;
+  stroke-opacity: 0.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: none;
+}
+
+/* Destination selection indicator */
+.destination-type-indicator {
+  @apply absolute top-2 left-2 px-2 py-1 rounded-md text-xs font-medium z-10;
+}
+
+.destination-type-start {
+  @apply bg-green-500/80 text-white;
+}
+
+.destination-type-end {
+  @apply bg-blue-500/80 text-white;
+}
+
+/* Music player styles */
+.music-player-progress {
+  @apply h-1 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden cursor-pointer;
+}
+
+.music-player-progress-bar {
+  @apply h-full bg-blue-500 rounded-full;
+}
+
+.music-control-button {
+  @apply text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none transition-colors;
+}
+
+.music-play-button {
+  @apply bg-blue-500 text-white rounded-full p-3 focus:outline-none hover:bg-blue-600 transition-colors;
+}
+
+.track-item {
+  @apply flex items-center p-3 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-lg cursor-pointer transition-colors;
+}
+
+.track-item.active {
+  @apply bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400;
+}
+
+/* Icon color system - Add after existing classes but before media queries */
+.icon-primary {
+  @apply text-blue-600 dark:text-blue-400 transition-colors duration-300;
+}
+
+.icon-secondary {
+  @apply text-slate-600 dark:text-slate-400 transition-colors duration-300;
+}
+
+.icon-success {
+  @apply text-emerald-600 dark:text-emerald-400 transition-colors duration-300;
+}
+
+.icon-warning {
+  @apply text-amber-600 dark:text-amber-400 transition-colors duration-300;
+}
+
+.icon-danger {
+  @apply text-red-600 dark:text-red-400 transition-colors duration-300;
+}
+
+.icon-info {
+  @apply text-cyan-600 dark:text-cyan-400 transition-colors duration-300;
+}
+
+.icon-purple {
+  @apply text-purple-600 dark:text-purple-400 transition-colors duration-300;
+}
+
+.icon-pink {
+  @apply text-pink-600 dark:text-pink-400 transition-colors duration-300;
+}
+
+.icon-indigo {
+  @apply text-indigo-600 dark:text-indigo-400 transition-colors duration-300;
+}
+
+.icon-teal {
+  @apply text-teal-600 dark:text-teal-400 transition-colors duration-300;
+}
+
+/* Fix inconsistent styling for buttons */
+button:focus {
+  @apply outline-none ring-2 ring-blue-500/50;
+}
+
+/* Fix overflow issues */
+.overflow-fix {
+  overflow: hidden;
+}
+
+/* Theme transition */
+.theme-transition {
+  @apply transition-colors duration-300;
+}
+
+/* Light mode specific styles */
+.light-mode-bg {
+  @apply bg-slate-50;
+}
+
+.light-mode-card {
+  @apply bg-white border border-slate-200 shadow-sm rounded-xl;
+}
+
+.light-mode-text-primary {
+  @apply text-slate-900;
+}
+
+.light-mode-text-secondary {
+  @apply text-slate-600;
+}
+
+.light-mode-border {
+  @apply border-slate-200;
+}
+
+.light-mode-alert-warning {
+  @apply bg-amber-50 border-amber-200 text-amber-800;
+}
+
+.light-mode-alert-success {
+  @apply bg-emerald-50 border-emerald-200 text-emerald-800;
+}
+
+.light-mode-button-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white;
+}
+
+.light-mode-button-secondary {
+  @apply bg-white border border-slate-200 text-slate-700 hover:border-blue-300 hover:text-blue-600;
+}
+
+/* Tesla-inspired light mode styles */
+.tesla-dashboard-panel {
+  @apply bg-white/95 backdrop-blur-xl border border-slate-200/60 rounded-2xl shadow-lg shadow-slate-200/50 transition-all duration-300;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.tesla-status-bar {
+  @apply bg-white/90 backdrop-blur-xl border-b border-slate-200/60 shadow-sm;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.tesla-button {
+  @apply bg-white/90 backdrop-blur-xl border border-slate-200/60 hover:border-blue-300/60 hover:shadow-lg hover:shadow-blue-100/50 transition-all duration-300 rounded-xl;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.tesla-button:hover {
+  background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+  transform: translateY(-1px);
+}
+
+.tesla-gradient-header {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f8fafc 100%);
+}
+
+.tesla-glass-effect {
+  @apply backdrop-blur-xl bg-white/80 border border-white/20;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+}
+
+.tesla-alert-warning {
+  @apply bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200/60 shadow-sm;
+  background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+}
+
+.tesla-text-primary {
+  @apply text-slate-800;
+}
+
+.tesla-text-secondary {
+  @apply text-slate-600;
+}
+
+.tesla-text-muted {
+  @apply text-slate-500;
+}
+
+.tesla-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.tesla-shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+}
