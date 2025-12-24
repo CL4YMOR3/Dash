@@ -2,7 +2,7 @@
 
 DASH is a premium, Tesla-inspired automotive dashboard designed for modern vehicle control systems. Built with Next.js and high-performance animations, it provides a seamless interface for vehicle monitoring, **intelligent voice navigation**, and integrated entertainment.
 
-![DASH Dashboard Mockup](public/dashboard-preview.png)
+![DASH Dashboard Mockup](public/dashboard_preview.jpeg)
 
 ## ✨ Frontend Features
 
